@@ -24,18 +24,46 @@ function mapTeamToBuilding(team) {
     };
 }
 
+function mapTeamToAccess(team) {
+    switch(team) {
+        case "IMMA":
+           return "https://www.google.com/";
+        case "IFMC":
+        case "IMMC":
+        case "CLAIM":
+           return "https://wiki.lmig.com/pages/viewpage.action?spaceKey=PIInternet&title=Transition+Resources";
+        default:
+           return "https://www.google.com/";
+    };
+}
+
 restService.post('/echo', function(req, res) {
-    var buildingName;
+    var responseObject;
     
-    if (req.body.result && req.body.result.parameters && req.body.result.parameters.team) {
-        buildingName = mapTeamToBuilding(req.body.result.parameters.team);
+    if (req.body.result && req.body.result.metadata) {
+        switch (req.body.result.metadata.intentName) {
+            case "FindTeam":
+                var buildingName = mapTeamToBuilding(req.body.result.parameters.team);
+        
+                responseObject = {
+                    speech: buildingName,
+                    displayText: buildingName,
+                    source: 'webhook-echo-sample'
+                };
+                break;
+            case "access":
+                var access = mapTeamToAccess(req.body.result.parameters.team);
+        
+                responseObject = {
+                    speech: access,
+                    displayText: access,
+                    source: 'webhook-echo-sample'
+                };
+                break;
+        };     
     }
     
-    return res.json({
-        speech: buildingName,
-        displayText: buildingName,
-        source: 'webhook-echo-sample'
-    });
+    return res.json(responseObject);
 });
 
 restService.post('/slack-test', function(req, res) {
