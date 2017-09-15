@@ -11,24 +11,29 @@ restService.use(bodyParser.urlencoded({
 
 restService.use(bodyParser.json());
 
+function mapTeamToBuilding(team) {
+    switch(team) {
+        case "IMMA":
+           return "6th Floor\n30 St James\nBoston, MA";
+        case "IFMC":
+        case "IMMC":
+        case "CLAIM":
+           return "9th Floor\n222 Berkeley St\nBoston, MA";
+        default:
+           return "Unknown";
+    };
+}
+
 restService.post('/echo', function(req, res) {
-    var teamName, buildingName;
+    var buildingName;
     
     if (req.body.result && req.body.result.parameters && req.body.result.parameters.team) {
-        teamName = req.body.result.parameters.team
+        buildingName = mapTeamToBuilding(req.body.result.parameters.team);
     }
     
-    switch(teamName) {
-        case "IMMA":
-           buildingName = "30 St James";
-           break;
-        default:
-           buildingName = "Unknown";
-    };
-    
     return res.json({
-        speech: buildingName + " (speech)",
-        displayText: buildingName + " (displayText)",
+        speech: buildingName,
+        displayText: buildingName,
         source: 'webhook-echo-sample'
     });
 });
