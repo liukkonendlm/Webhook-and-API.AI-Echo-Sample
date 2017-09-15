@@ -11,6 +11,7 @@ restService.use(bodyParser.urlencoded({
 
 restService.use(bodyParser.json());
 
+// test
 function mapTeamToBuilding(team) {
     switch(team) {
         case "IMMA":
