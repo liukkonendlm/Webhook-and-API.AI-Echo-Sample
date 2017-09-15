@@ -30,7 +30,7 @@ function mapTeamToAccess(team) {
 
   switch(team) {
     case "IMMA":
-      return "https://www.google.com/";
+      return "https://forge.lmig.com/wiki/display/USCMIMMA/I+Manage+My+Account+Home";
     case "IFMC":
     case "IMMC":
     case "CLAIM":
