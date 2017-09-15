@@ -25,16 +25,20 @@ function mapTeamToBuilding(team) {
     };
 }
 
+function linkify(url) {
+    return "<a href='" + url + "'>" + url + "</a>";    
+}
+
 function mapTeamToAccess(team) {
     switch(team) {
         case "IMMA":
-           return "https://www.google.com/";
+           return linkify("https://www.google.com/");
         case "IFMC":
         case "IMMC":
         case "CLAIM":
-           return "https://wiki.lmig.com/pages/viewpage.action?spaceKey=PIInternet&title=Transition+Resources";
+           return linkify("https://wiki.lmig.com/pages/viewpage.action?spaceKey=PIInternet&title=Transition+Resources");
         default:
-           return "https://www.google.com/";
+           return linkify("https://www.google.com/");
     };
 }
 
