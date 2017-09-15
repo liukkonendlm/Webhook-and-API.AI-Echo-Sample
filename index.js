@@ -45,6 +45,15 @@ restService.post('/echo', function(req, res) {
 
   if (req.body.result && req.body.result.metadata) {
     switch (req.body.result.metadata.intentName) {
+      case "Greetings":
+        var name = req.body.result.resolvedQuery;
+        var message = "Hi " + name + ", welcome to Liberty Mutual.";
+        responseObject = {
+          speech: message,
+          displayText: message,
+          source: 'webhook-echo-sample'
+        };
+        break;
       case "FindTeam":
         var buildingName = mapTeamToBuilding(req.body.result.parameters.team);
 
