@@ -57,7 +57,7 @@ restService.post('/echo', function(req, res) {
       case "FindTeam":
         var buildingName = mapTeamToBuilding(req.body.result.parameters.team);
 
-        var googleImage = "A map of <https://www.google.com/maps/place/" + encodeURIComponent(buildingName) + "> (<https://www.google.com/maps/place/" + encodeURIComponent(buildingName) + "|View on Google Maps>): <http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(buildingName) + "&zoom=13&size=800x400&sensor=false| >";
+        var googleImage = "A map of <https://www.google.com/maps/place/" + encodeURIComponent(buildingName) + "> (<https://www.google.com/maps/place/" + encodeURIComponent(buildingName) + "|View on Google Maps>): <http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(buildingName) + "&size=800x400>";
         
         var slack_message = {
           "text": "Building Location Directions - " + googleImage,
