@@ -65,7 +65,7 @@ restService.post('/echo', function(req, res) {
             "title": buildingName,
             "title_link": "https://www.google.com/maps/place/" + encodeURIComponent(buildingName),
             "color": "#36a64f",
-            "thumb_url": "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(buildingName) + "&size=800x400&sensor=false"
+            //"thumb_url": "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(buildingName) + "&size=800x400&sensor=false"
           }]
         };
 
