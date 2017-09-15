@@ -12,15 +12,25 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/echo', function(req, res) {
-    return res.json({displayText: "Blah blah"});
-    /**
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+    var teamName, buildingName;
+    
+    if (req.body.result && req.body.result.parameters && req.body.result.parameters.team) {
+        teamName = req.body.result.parameters.team
+    }
+    
+    switch(teamName) {
+        case "IMMA":
+           buildingName = "30 St James";
+           break;
+        default:
+           buildingName = "Unknown";
+    };
+    
     return res.json({
-        speech: speech,
-        displayText: speech,
+        speech: buildingName + " (speech)",
+        displayText: buildingName + " (displayText)",
         source: 'webhook-echo-sample'
     });
-    */
 });
 
 restService.post('/slack-test', function(req, res) {
